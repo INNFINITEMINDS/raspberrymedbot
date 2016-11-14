@@ -12,6 +12,18 @@ namespace RaspberryMedbot.Models
         public int PatientID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public DateTime Birthday { get { return Birthday.Date; } set { Birthday = value; } }
+        private DateTime birthday;
+        public DateTime Birthday
+        {
+            get
+            {
+                return this.birthday.Date;
+            }
+            set
+            {
+                this.birthday = value;
+            }
+        }
+        
     }
 }
