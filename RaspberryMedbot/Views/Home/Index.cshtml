@@ -8,23 +8,20 @@
 </div>
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
+    <div class="col-md-6">
+        <h2>Caretaker in control</h2>
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            Raspberry MedBot allows you to stay connected with your seniors and medical patients as they take care of themselves and follow treatment regimens.
+            Manage the care for all your loved ones and be confident that they're staying happy and healthy wherever you are.
         </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <p><a class="btn btn-default" @Html.ActionLink("Go to the patients >>", "Index", "Patients")</a></p>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div class="col-md-6">
+        <h2>Flexible secheduling</h2>
+        <p>
+            Whether your patient needs to schedule medication, physical therapy exercises, meals, or other activities, Raspberry MedBot works with both of you
+            to empower healthy lifestyles and grant peace of mind.
+        </p>
+        <p><a class="btn btn-default" @Html.ActionLink("Go to the activities >>", "Index", "Activities")</a></p>
     </div>
 </div>
