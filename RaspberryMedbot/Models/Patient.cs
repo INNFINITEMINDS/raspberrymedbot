@@ -12,18 +12,7 @@ namespace RaspberryMedbot.Models
         public int PatientID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        private DateTime birthday;
-        public DateTime Birthday
-        {
-            get
-            {
-                return this.birthday.Date;
-            }
-            set
-            {
-                this.birthday = value;
-            }
-        }
-        
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        public DateTime Birthday { get; set; }
     }
 }
