@@ -11,9 +11,10 @@ namespace RaspberryMedbot.Models
         [Key]
         public int ActivityID { get; set; }
         public int PatientID { get; set; }
-        public Patient Patient { get; set; }
         public bool? Response { get; set; }
         public DateTime CreationTime { get; set; }
         public DateTime? ResponseTime { get; set; }
+
+        public virtual Patient Patient { get; set; }
     }
 }

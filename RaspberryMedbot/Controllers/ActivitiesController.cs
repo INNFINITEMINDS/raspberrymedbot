@@ -39,7 +39,7 @@ namespace RaspberryMedbot.Controllers
         // GET: Activities/Create
         public ActionResult Create()
         {
-            ViewBag.PatientID = new SelectList(db.Patients, "PatientID", "FirstName");
+            ViewBag.PatientID = new SelectList(db.Patients, "PatientID", "PatientString");
             return View();
         }
 
