@@ -95,8 +95,8 @@ namespace RaspberryMedbot.Controllers
         }
 
         // YES POST
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost, ActionName("Yes")]
+        //[ValidateAntiForgeryToken]
         public ActionResult Yes([Bind(Include = "ActivityID,PatientID,Response,CreationTime,ResponseTime")] Activity activity)
         {
             activity.Response = true;
@@ -111,8 +111,8 @@ namespace RaspberryMedbot.Controllers
         }
 
         // NO POST
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost, ActionName("No")]
+        //[ValidateAntiForgeryToken]
         public ActionResult No([Bind(Include = "ActivityID,PatientID,Response,CreationTime,ResponseTime")] Activity activity)
         {
             activity.Response = false;
