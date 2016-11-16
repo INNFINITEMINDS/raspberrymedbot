@@ -57,7 +57,7 @@ namespace RaspberryMedbot.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.PatientID = new SelectList(db.Patients, "PatientID", "FirstName", activity.PatientID);
+            ViewBag.PatientID = new SelectList(db.Patients, "PatientID", "PatientString", activity.PatientID);
             return View(activity);
         }
 
@@ -73,7 +73,7 @@ namespace RaspberryMedbot.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.PatientID = new SelectList(db.Patients, "PatientID", "FirstName", activity.PatientID);
+            ViewBag.PatientID = new SelectList(db.Patients, "PatientID", "PatientString", activity.PatientID);
             return View(activity);
         }
 
@@ -90,7 +90,7 @@ namespace RaspberryMedbot.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.PatientID = new SelectList(db.Patients, "PatientID", "FirstName", activity.PatientID);
+            ViewBag.PatientID = new SelectList(db.Patients, "PatientID", "PatientString", activity.PatientID);
             return View(activity);
         }
 
@@ -111,7 +111,6 @@ namespace RaspberryMedbot.Controllers
         }
 
         // NO POST
-        // YES POST
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult No([Bind(Include = "ActivityID,PatientID,Response,CreationTime,ResponseTime")] Activity activity)
