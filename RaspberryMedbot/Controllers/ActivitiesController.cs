@@ -94,6 +94,39 @@ namespace RaspberryMedbot.Controllers
             return View(activity);
         }
 
+        // YES POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Yes([Bind(Include = "ActivityID,PatientID,Response,CreationTime,ResponseTime")] Activity activity)
+        {
+            activity.Response = true;
+            if (ModelState.IsValid)
+            {
+                db.Entry(activity).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.PatientID = new SelectList(db.Patients, "PatientID", "FirstName", activity.PatientID);
+            return View(activity);
+        }
+
+        // NO POST
+        // YES POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult No([Bind(Include = "ActivityID,PatientID,Response,CreationTime,ResponseTime")] Activity activity)
+        {
+            activity.Response = false;
+            if (ModelState.IsValid)
+            {
+                db.Entry(activity).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.PatientID = new SelectList(db.Patients, "PatientID", "FirstName", activity.PatientID);
+            return View(activity);
+        }
+
         // GET: Activities/Delete/5
         public ActionResult Delete(int? id)
         {
