@@ -95,19 +95,14 @@ namespace RaspberryMedbot.Controllers
         }
 
         // YES POST
-        [HttpPost, ActionName("Yes")]
-        //[ValidateAntiForgeryToken]
-        public ActionResult Yes([Bind(Include = "ActivityID,PatientID,Response,CreationTime,ResponseTime")] Activity activity)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Yes(int? id)
         {
+            Activity activity = db.Activities.Find(id);
             activity.Response = true;
-            if (ModelState.IsValid)
-            {
-                db.Entry(activity).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.PatientID = new SelectList(db.Patients, "PatientID", "FirstName", activity.PatientID);
-            return View(activity);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // NO POST
