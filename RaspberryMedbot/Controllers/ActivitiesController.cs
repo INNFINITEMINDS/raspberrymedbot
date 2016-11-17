@@ -21,6 +21,23 @@ namespace RaspberryMedbot.Controllers
             return View(activities.ToList());
         }
 
+        //
+        public ActionResult Yes(int? id)
+        {
+            Activity activity = db.Activities.Find(id);
+            activity.Response = true;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult No(int? id)
+        {
+            Activity activity = db.Activities.Find(id);
+            activity.Response = false;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         // GET: Activities/Details/5
         public ActionResult Details(int? id)
         {
@@ -91,33 +108,6 @@ namespace RaspberryMedbot.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.PatientID = new SelectList(db.Patients, "PatientID", "PatientString", activity.PatientID);
-            return View(activity);
-        }
-
-        // YES POST
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Yes(int? id)
-        {
-            Activity activity = db.Activities.Find(id);
-            activity.Response = true;
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        // NO POST
-        [HttpPost, ActionName("No")]
-        //[ValidateAntiForgeryToken]
-        public ActionResult No([Bind(Include = "ActivityID,PatientID,Response,CreationTime,ResponseTime")] Activity activity)
-        {
-            activity.Response = false;
-            if (ModelState.IsValid)
-            {
-                db.Entry(activity).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.PatientID = new SelectList(db.Patients, "PatientID", "FirstName", activity.PatientID);
             return View(activity);
         }
 
