@@ -69,6 +69,7 @@ namespace RaspberryMedbot.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ActivityID,PatientID,Response,CreationTime,ResponseTime")] Activity activity)
         {
+            activity.CreationTime = DateTime.Now;
             if (ModelState.IsValid)
             {
                 db.Activities.Add(activity);
