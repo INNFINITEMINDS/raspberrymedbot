@@ -26,6 +26,7 @@ namespace RaspberryMedbot.Controllers
         {
             Activity activity = db.Activities.Find(id);
             activity.Response = true;
+            activity.ResponseTime = DateTime.Now;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -34,6 +35,7 @@ namespace RaspberryMedbot.Controllers
         {
             Activity activity = db.Activities.Find(id);
             activity.Response = false;
+            activity.ResponseTime = DateTime.Now;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
