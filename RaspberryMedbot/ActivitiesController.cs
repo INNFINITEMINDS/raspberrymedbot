@@ -8,20 +8,12 @@ using System.Web;
 using System.Web.Mvc;
 using RaspberryMedbot.Models;
 
-namespace RaspberryMedbot.Controllers
+namespace RaspberryMedbot
 {
     public class ActivitiesController : Controller
     {
         private RaspberryMedbotContext db = new RaspberryMedbotContext();
 
-        // GET: Activities
-        public ActionResult Index()
-        {
-            var activities = db.Activities.Include(a => a.Patient);
-            return View(activities.ToList());
-        }
-
-        //
         public ActionResult Yes(int? id)
         {
             Activity activity = db.Activities.Find(id);
@@ -38,6 +30,13 @@ namespace RaspberryMedbot.Controllers
             activity.ResponseTime = DateTime.Now;
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        // GET: Activities
+        public ActionResult Index()
+        {
+            var activities = db.Activities.Include(a => a.Patient);
+            return View(activities.ToList());
         }
 
         // GET: Activities/Details/5
@@ -58,7 +57,7 @@ namespace RaspberryMedbot.Controllers
         // GET: Activities/Create
         public ActionResult Create()
         {
-            ViewBag.PatientID = new SelectList(db.Patients, "PatientID", "PatientString");
+            ViewBag.PatientID = new SelectList(db.Patients, "PatientID", "FirstName");
             return View();
         }
 
@@ -69,7 +68,6 @@ namespace RaspberryMedbot.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ActivityID,PatientID,ActivityName,Response,CreationTime,ResponseTime")] Activity activity)
         {
-            activity.CreationTime = DateTime.Now;
             if (ModelState.IsValid)
             {
                 db.Activities.Add(activity);
@@ -77,7 +75,7 @@ namespace RaspberryMedbot.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.PatientID = new SelectList(db.Patients, "PatientID", "PatientString", activity.PatientID);
+            ViewBag.PatientID = new SelectList(db.Patients, "PatientID", "FirstName", activity.PatientID);
             return View(activity);
         }
 
@@ -93,7 +91,7 @@ namespace RaspberryMedbot.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.PatientID = new SelectList(db.Patients, "PatientID", "PatientString", activity.PatientID);
+            ViewBag.PatientID = new SelectList(db.Patients, "PatientID", "FirstName", activity.PatientID);
             return View(activity);
         }
 
@@ -110,7 +108,7 @@ namespace RaspberryMedbot.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.PatientID = new SelectList(db.Patients, "PatientID", "PatientString", activity.PatientID);
+            ViewBag.PatientID = new SelectList(db.Patients, "PatientID", "FirstName", activity.PatientID);
             return View(activity);
         }
 
