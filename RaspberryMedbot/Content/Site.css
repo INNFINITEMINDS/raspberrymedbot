@@ -1,7 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-color: silver;
+    background-color: lightgrey;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -46,4 +46,16 @@ h2 {
 
 .navbar-header {
     font-family: 'Exo 2', sans-serif;
+}
+
+.navbar {
+    background-color: darkslategrey;
+}
+
+.table-success {
+    background-color: lightgreen;
+}
+
+.table-danger {
+    background-color: palevioletred;
 }

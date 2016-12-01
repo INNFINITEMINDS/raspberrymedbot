@@ -30,7 +30,17 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
+    string respColor = "default";
+    if (item.Response == true)
+    {
+        respColor = "success";
+    }
+    else if (item.Response == false)
+    {
+        respColor = "danger";
+    }
+
+    <tr class=table-@respColor>
         <td>
             @Html.DisplayFor(modelItem => item.Patient.FirstName) @Html.DisplayFor(modelItem => item.Patient.LastName)
         </td>
